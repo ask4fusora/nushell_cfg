@@ -1,6 +1,9 @@
 $env.config.show_banner = false
 
-$env.config.shell_integration.osc133 = false # Until windows fixes its stupid ConPty.
+if $env.TERM_PROGRAM? == "WezTerm" and $env.OS? == "Windows_NT" {
+
+  $env.config.shell_integration.osc133 = false
+}
 
 $env.config.completions.algorithm = "Fuzzy"
 
