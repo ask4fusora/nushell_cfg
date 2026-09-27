@@ -1,20 +1,17 @@
 export def --env install-windows-env [] {
-  require-executable scoop
+    require-executable scoop
 
-  let git_bin = (
-    which git
-    | first
-    | get path
-    | path dirname
-    | path join .. usr bin
-    | path expand -n
-  )
+    let git_bin = (
+        $env.GIT_INSTALL_ROOT
+        | path join usr bin
+        | path expand -n
+    )
 
-  $env.PATH = (
-    $env.PATH
-    | append [
-      $git_bin
-    ]
-    | uniq
-  )
+    $env.PATH = (
+        $env.PATH
+        | append [
+            $git_bin
+        ]
+        | uniq
+    )
 }
