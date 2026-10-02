@@ -1,4 +1,4 @@
-export def "sys disks mount" [] {
+export def "sys disks pick-mount" [] {
   require-executable fzf
 
   let sep = char tab
