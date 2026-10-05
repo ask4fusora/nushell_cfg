@@ -32,7 +32,7 @@ export-env {
             $"($user_style)prompts(ansi reset) "
         }
 
-        PROMPT_COMMAND: "",
+        PROMPT_COMMAND: (char nl),
         PROMPT_COMMAND_RIGHT: {||
             ^starship prompt --right --terminal-width=(term size | get columns)
         }
