@@ -6,7 +6,7 @@ export-env {
   zoxide build-env
 }
 
-export def --env --wrapped z [...rest: string] {
+export def --env --wrapped z [...rest: directory] {
   require-executable zoxide
 
   let path = match $rest {
@@ -27,7 +27,7 @@ export def --env --wrapped z [...rest: string] {
   cd $path
 }
 
-export def --env --wrapped zi [...rest: string] {
+export def --env --wrapped zi [...rest: directory] {
   require-executable zoxide
 
   cd $'(^zoxide query --interactive -- ...$rest | str trim -r -c "\n")'
