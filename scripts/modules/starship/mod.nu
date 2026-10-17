@@ -3,8 +3,7 @@ export-env {
 
     load-env {
         STARSHIP_CONFIG: (
-            $nu.config-path
-            | path dirname
+            $nu.default-config-dir
             | path join scripts modules starship starship.toml
         )
         STARSHIP_SHELL: "nu"
