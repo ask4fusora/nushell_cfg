@@ -16,7 +16,7 @@ $env.config.completions.algorithm = "Fuzzy"
 
 $env.config.history.file_format = "Sqlite"
 
-use modules/utils *
+use modules/assert
 use modules/fzf
 use modules/cloudflared
 use modules/from

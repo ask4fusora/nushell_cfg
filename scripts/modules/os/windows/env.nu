@@ -1,5 +1,5 @@
 export def --env install-windows-env [] {
-    require-executable scoop
+    assert binary exists scoop
 
     let git_bin = (
         $env.GIT_INSTALL_ROOT

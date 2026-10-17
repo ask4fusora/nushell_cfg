@@ -1,5 +1,5 @@
 export def "sys disks pick-mount" [] {
-  require-executable fzf
+  assert binary exists fzf
 
   let sep = char tab
 

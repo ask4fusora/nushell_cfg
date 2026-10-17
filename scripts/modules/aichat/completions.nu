@@ -1,5 +1,5 @@
 def query-aichat-completion-values [flag: string] {
-  require-executable aichat
+  assert binary exists aichat
 
   try {
     ^aichat $flag

@@ -1,11 +1,11 @@
 export def elevate [] {
-  require-executable sudo
+  assert binary exists sudo
 
   ^sudo nu
 }
 
 export def --wrapped sudo [...args] {
-  require-executable sudo
+  assert binary exists sudo
 
   let command = $args | str join ' '
 

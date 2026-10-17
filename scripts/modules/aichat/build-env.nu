@@ -2,7 +2,7 @@ use env.nu *
 use keybindings.nu *
 
 export def --env "aichat build-env" [] {
-  require-executable aichat
+  assert binary exists aichat
 
   install-aichat-env
 

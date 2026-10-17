@@ -2,7 +2,7 @@ use completions.nu *
 use build-env.nu *
 
 export-env {
-  require-executable aichat
+  assert binary exists aichat
 
   aichat build-env
 }

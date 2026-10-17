@@ -1,13 +1,13 @@
 use build-env.nu *
 
 export-env {
-  require-executable zoxide
+  assert binary exists zoxide
 
   zoxide build-env
 }
 
 export def --env --wrapped z [...rest: directory] {
-  require-executable zoxide
+  assert binary exists zoxide
 
   let path = match $rest {
     [] => { "~" }
@@ -28,7 +28,7 @@ export def --env --wrapped z [...rest: directory] {
 }
 
 export def --env --wrapped zi [...rest: directory] {
-  require-executable zoxide
+  assert binary exists zoxide
 
   cd $'(^zoxide query --interactive -- ...$rest | str trim -r -c "\n")'
 }

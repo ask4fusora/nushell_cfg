@@ -1,11 +1,11 @@
 export def --wrapped ya [...args] {
-  require-executable yazi
+  assert binary exists yazi
 
   ^yazi ...$args
 }
 
 export def --env --wrapped y [...args] {
-  require-executable yazi
+  assert binary exists yazi
 
   let tmp = (mktemp -t "yazi-cwd.XXXXXX")
 

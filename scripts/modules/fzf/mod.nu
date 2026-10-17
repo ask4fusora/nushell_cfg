@@ -1,5 +1,5 @@
 export-env {
-    require-executable fzf
+    assert binary exists fzf
 
     $env.FZF_DEFAULT_OPTS = "--style=full"
 }

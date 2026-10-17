@@ -1,5 +1,5 @@
 export-env {
-    require-executable starship
+    assert binary exists starship
 
     load-env {
         STARSHIP_CONFIG: (
