@@ -1,18 +1,20 @@
 $env.config.show_banner = false
 
+$env.config.edit_mode = "vi"
+$env.config.cursor_shape = {vi_insert: line, vi_normal: block}
+
 $env.config.shell_integration.osc7 = true
+
+$env.config.max_last_result_size = 500MB
 
 $env.config.completions.algorithm = "Fuzzy"
 
 $env.config.history.file_format = "Sqlite"
 
-$env.config.max_last_result_size = 500MB
-
 use modules/utils *
 use modules/fzf
 use modules/cloudflared
 use modules/from
-use modules/vi *
 use modules/env *
 use modules/aichat *
 use modules/zoxide *
