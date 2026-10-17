@@ -29,7 +29,7 @@ use modules/sys *
 use modules/admin *
 use modules/uv-python *
 use nu-scripts/custom-completions/uv/uv-completions.nu *
-use modules/zed *
+use externs/zed *
 use modules/starship *
 use nu-scripts/custom-completions/scoop/scoop-completions.nu *
 use nu-scripts/custom-completions/winget/winget-completions.nu *

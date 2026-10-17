@@ -1,7 +1,5 @@
-module completions {
-    def "nu-complete zed completions" [] {
-        require-executable zed
-
+module ext {
+    def "nu-complete zed --completions" [] {
         [
             "bash"
             "elvish"
@@ -28,17 +26,11 @@ module completions {
         --system-specs            # Not supported in Zed CLI, only supported on Zed binary Will attempt to give the correct command to run
         --dev-container           # Open the project in a dev container
         --diff: path              # Pairs of file paths to diff. Can be specified multiple times. When directories are provided, recurses into them and shows all changed files in a single multi-diff view
-        --completions: string@"nu-complete zed completions" # Generate shell completions for Zed
+        --completions: string@"nu-complete zed --completions" # Generate shell completions for Zed
         --askpass: string         # Used for SSH/Git password authentication, to remove the need for netcat as a dependency, by having Zed act like netcat communicating over a Unix socket
         --help(-h)                # Print help (see more with '--help')
         ...paths_with_position: path # The paths to open in Zed (space-separated)
     ]
 }
 
-export-env {
-    if $env.EDITOR? == "zed -w" or $env.EDITOR? == "zed --wait" {
-        $env.config.buffer_editor = ["zed" "-w"]
-    }
-}
-
-export use completions *
+export use ext *
