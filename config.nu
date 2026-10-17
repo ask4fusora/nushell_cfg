@@ -9,6 +9,7 @@ $env.config.history.file_format = "Sqlite"
 $env.config.max_last_result_size = 500MB
 
 use modules/utils *
+use modules/fzf
 use modules/from *
 use modules/vi *
 use modules/env *
@@ -24,7 +25,6 @@ use modules/cloudflared *
 use nu-scripts/custom-completions/uv/uv-completions.nu *
 use modules/zed *
 use modules/starship *
-use modules/fzf *
 use nu-scripts/custom-completions/scoop/scoop-completions.nu *
 use nu-scripts/custom-completions/winget/winget-completions.nu *
 use nu-scripts/custom-completions/typst/typst-completions.nu *
