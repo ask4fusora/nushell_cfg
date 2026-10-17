@@ -11,7 +11,7 @@ $env.config.max_last_result_size = 500MB
 use modules/utils *
 use modules/fzf
 use modules/cloudflared
-use modules/from *
+use modules/from
 use modules/vi *
 use modules/env *
 use modules/aichat *
