@@ -1,17 +1,19 @@
 export-env {
     assert binary exists starship
+}
 
+export-env {
     load-env {
         STARSHIP_CONFIG: (
             $nu.default-config-dir
             | path join scripts modules starship starship.toml
-        )
-        STARSHIP_SHELL: "nu"
-        STARSHIP_SESSION_KEY: (random chars --length=16)
+        ),
+        STARSHIP_SHELL: "nu",
+        STARSHIP_SESSION_KEY: (random chars --length=16),
 
-        PROMPT_MULTILINE_INDICATOR: $"(ansi white_dimmed)· "
+        PROMPT_MULTILINE_INDICATOR: $"(ansi white_dimmed)· ",
 
-        PROMPT_INDICATOR_VI_INSERT: {||
+        PROMPT_INDICATOR_VI_INSERT: { ||
             let user_style = if (is-admin) {
                 ansi red
             } else {
@@ -21,7 +23,7 @@ export-env {
             $"($user_style)runs(ansi reset) "
         }
 
-        PROMPT_INDICATOR_VI_NORMAL: {||
+        PROMPT_INDICATOR_VI_NORMAL: { ||
             let user_style = if (is-admin) {
                 ansi red
             } else {
@@ -32,7 +34,7 @@ export-env {
         }
 
         PROMPT_COMMAND: (char nl),
-        PROMPT_COMMAND_RIGHT: {||
+        PROMPT_COMMAND_RIGHT: { ||
             ^starship prompt --right --terminal-width=(term size | get columns)
         }
     }
