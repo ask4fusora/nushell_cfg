@@ -42,7 +42,7 @@ export def pick [
     | lines
     | into int
 
-    let selected_records = $selected_indices | each {|it| $pipeline_input | get $it }
+    let selected_records = $selected_indices | each {|it| $pipeline_input | get ($it - 1) }
 
     if $multi {
         return $selected_records
