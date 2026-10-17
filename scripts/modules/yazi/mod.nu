@@ -1,19 +1,15 @@
-export def --wrapped ya [...args] {
-  assert binary exists yazi
+export def --wrapped ya [...args: directory]: nothing -> nothing {
+    assert binary exists yazi
 
-  ^yazi ...$args
+    ^yazi ...$args
 }
 
-export def --env --wrapped y [...args] {
-  assert binary exists yazi
+export def --env --wrapped y [...args: directory]: nothing -> nothing {
+    assert binary exists yazi
 
-  let tmp = (mktemp -t "yazi-cwd.XXXXXX")
-
-  ^yazi ...$args --cwd-file $tmp
-
-  let cwd = (open $tmp)
-
-  if $cwd != $env.PWD and ($cwd | path exists) { cd $cwd }
-
-  rm -fp $tmp
+    let temp_file = mktemp -t "yazi_cwd.XXXXXX"
+    ^yazi ...$args --cwd-file=($temp_file)
+    let cwd = open $temp_file
+    if $cwd != (pwd) and ($cwd | path exists) { cd $cwd }
+    rm -fp $temp_file
 }
