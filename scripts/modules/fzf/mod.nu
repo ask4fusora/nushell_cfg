@@ -1,7 +1,3 @@
 export-env {
-    assert binary exists fzf
-}
-
-export-env {
     $env.FZF_DEFAULT_OPTS = "--style=full"
 }
