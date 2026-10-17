@@ -15,4 +15,5 @@ module binary {
         }
     }
 }
+
 export use binary
