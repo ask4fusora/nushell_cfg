@@ -22,7 +22,6 @@ use modules/cloudflared
 use modules/from
 use modules/aichat *
 use modules/zoxide *
-use modules/yazi *
 use modules/gh-cli *
 use modules/os *
 use modules/sys *
@@ -30,6 +29,7 @@ use modules/admin *
 use modules/uv-python *
 use nu-scripts/custom-completions/uv/uv-completions.nu *
 use externs/zed *
+use externs/yazi *
 use modules/starship *
 use nu-scripts/custom-completions/scoop/scoop-completions.nu *
 use nu-scripts/custom-completions/winget/winget-completions.nu *
