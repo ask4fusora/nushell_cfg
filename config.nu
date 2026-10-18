@@ -30,7 +30,7 @@ use modules/zoxide *
 use modules/admin *
 use modules/aichat *
 use modules/gh-cli *
-use modules/os *
+use modules/cb *
 use modules/uv *
 use nu-scripts/custom-completions/git/git-completions.nu *
 use nu-scripts/custom-completions/uv/uv-completions.nu *
