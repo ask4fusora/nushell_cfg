@@ -9,6 +9,10 @@ module ext {
     export def style [style: string@"nu-complete style"]: string -> string {
         $'(ansi $style)($in)($ansi_reset)'
     }
+
+    export def apply [ansi_esc_seq: string]: string -> string {
+        $'($ansi_esc_seq)($in)($ansi_reset)'
+    }
 }
 
 export use ext *
