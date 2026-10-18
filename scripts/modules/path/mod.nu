@@ -1,4 +1,4 @@
-export def ancestors []: string -> list<string> {
+export def ancestors []: path -> list<directory> {
     let path = $in | path expand -n
     let init_dir = match ($path | path type) {
         'file' => ($path | path dirname)
