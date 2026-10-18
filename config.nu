@@ -23,8 +23,8 @@ use modules/from
 use modules/starship
 use modules/zed *
 use modules/yazi *
-use modules/aichat *
 use modules/zoxide *
+use modules/aichat *
 use modules/gh-cli *
 use modules/os *
 use modules/sys *

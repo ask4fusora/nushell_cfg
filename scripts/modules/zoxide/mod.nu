@@ -1,34 +1,36 @@
-use build-env.nu *
-
 export-env {
-  assert binary exists zoxide
-
-  zoxide build-env
+    $env.config.hooks.env_change.PWD = $env.config.hooks.env_change.PWD?
+    | default []
+    | append {|_, cwd|
+        assert binary exists zoxide
+        ^zoxide add -- $cwd
+    }
 }
 
 export def --env --wrapped z [...rest: directory] {
-  assert binary exists zoxide
+    assert binary exists zoxide
 
-  let path = match $rest {
-    [] => { "~" }
-    ["-"] => { "-" }
-    [$arg] => {
-      if (try {
-        $arg | path expand | path type
-      } catch { null }) == "dir" { $arg } else {
-        ^zoxide query --exclude $env.PWD -- $arg | str trim -r -c "\n"
-      }
-    }
-    _ => {
-      ^zoxide query --exclude $env.PWD -- ...$rest | str trim -r -c "\n"
-    }
-  }
+    let path = match $rest {
+        [] => { "~" }
+        ["-"] => { "-" }
+        [$arg] => {
+            let path_type = try {
+                $arg | path expand | path type
+            } catch { null }
 
-  cd $path
+            if $path_type == "dir" { $arg } else {
+                ^zoxide query --exclude=(pwd) -- $arg | str trim -r -c "\n"
+            }
+        }
+        _ => {
+            ^zoxide query --exclude=(pwd) -- ...$rest | str trim -r -c "\n"
+        }
+    }
+
+    cd $path
 }
 
 export def --env --wrapped zi [...rest: directory] {
-  assert binary exists zoxide
-
-  cd $'(^zoxide query --interactive -- ...$rest | str trim -r -c "\n")'
+    assert binary exists zoxide
+    cd $'(^zoxide query --exclude=(pwd) --interactive -- ...$rest | str trim -r -c "\n")'
 }
