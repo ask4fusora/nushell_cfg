@@ -26,11 +26,11 @@ use modules/starship
 use modules/zed *
 use modules/yazi *
 use modules/zoxide *
+use modules/admin *
 use modules/aichat *
 use modules/gh-cli *
 use modules/os *
 use modules/sys *
-use modules/admin *
 use modules/uv-python *
 use nu-scripts/custom-completions/uv/uv-completions.nu *
 use nu-scripts/custom-completions/scoop/scoop-completions.nu *
