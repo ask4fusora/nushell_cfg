@@ -1,8 +1,4 @@
 export-env {
-    assert binary exists starship
-}
-
-export-env {
     load-env {
         STARSHIP_CONFIG: (
             $nu.default-config-dir
@@ -35,6 +31,7 @@ export-env {
 
         PROMPT_COMMAND: (char nl),
         PROMPT_COMMAND_RIGHT: { ||
+            assert binary exists starship
             ^starship prompt --right --terminal-width=(term size | get columns)
         }
     }
