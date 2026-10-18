@@ -7,7 +7,7 @@ export-env {
     }
 }
 
-export def --env --wrapped z [...rest: directory] {
+export def --env --wrapped z [...rest: directory]: nothing -> nothing {
     assert binary exists zoxide
 
     let path = match $rest {
@@ -30,7 +30,7 @@ export def --env --wrapped z [...rest: directory] {
     cd $path
 }
 
-export def --env --wrapped zi [...rest: directory] {
+export def --env --wrapped zi [...rest: directory]: nothing -> nothing {
     assert binary exists zoxide
     cd $'(^zoxide query --exclude=($env.PWD) --interactive -- ...$rest | str trim -r -c "\n")'
 }
