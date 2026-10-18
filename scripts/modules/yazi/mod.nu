@@ -10,7 +10,7 @@ module ext {
         let temp_file = mktemp -t "yazi_cwd.XXXXXX"
         ^yazi ...$args --cwd-file=($temp_file)
         let cwd = open $temp_file
-        if $cwd != (pwd) and ($cwd | path exists) { cd $cwd }
+        if $cwd != $env.PWD and ($cwd | path exists) { cd $cwd }
         rm -fp $temp_file
     }
 }
