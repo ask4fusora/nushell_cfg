@@ -27,7 +27,5 @@ def with-aichat-keybindings [] {
 }
 
 export def --env install-aichat-keybindings [] {
-  assert binary exists aichat
-
   $env.config = (with-aichat-keybindings)
 }
