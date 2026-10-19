@@ -1,3 +1,5 @@
+use modules/assert *
+
 export def --wrapped ya [...args: directory]: nothing -> nothing {
     assert binary exists yazi
     ^yazi ...$args
