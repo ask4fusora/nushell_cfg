@@ -1,4 +1,4 @@
-module externs {
+module extern {
     def "nu-complete zed --completions" [] {
         [
             "bash"
@@ -33,4 +33,4 @@ module externs {
     ]
 }
 
-export use externs *
+export use extern *
