@@ -1,7 +1,9 @@
 module from {
-    export def "docker-compose" []: string -> record { "[" + $in + "]" | from json }
+    # Parse `docker-compose --format=json ...` output and create table.
+    export def docker-compose []: string -> table { "[" + $in + "]" | from json }
 
-    export def "env" []: string -> record {
+    # Parse text as .env and create table.
+    export def env []: string -> table {
         lines
         | split column '#' # remove comments
         | get column0
