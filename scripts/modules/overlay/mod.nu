@@ -63,7 +63,8 @@ module overlay {
             $overlay_files_to_activate
             | zip $overlay_names_to_activate
             | each {
-                $"overlay use --reload=($reload) '($in.0)' as '($in.1)'" | diroverlay to hook
+                $"overlay use --reload=($reload) '($in.0)' as '($in.1)'"
+                | diroverlay to hook
             }
         )
 
