@@ -5,7 +5,7 @@ export-env {
     const ansi_text = ansi magenta_dimmed
     const ansi_admin_left_prompt = ansi red_dimmed
     const ansi_multiline_indicator = ansi white_dimmed
-    let ansi_number = ansi $env.config.color_config.shape_int
+    const ansi_number = ansi blue_bold
     let ansi_left_prompt = if (is-admin) { $ansi_admin_left_prompt } else { $ansi_text }
 
     load-env {
