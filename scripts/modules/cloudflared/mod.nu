@@ -1,7 +1,9 @@
 module cloudflared {
+    use modules/result *
+
     export def "tunnel dns delete" [
         --origincert: oneof<string, nothing> # The account certificate file path for one of your zones.
-    ]: nothing -> record {
+    ]: nothing -> oneof<record<ok: bool, result: any>, nothing> {
         let cert_path = (
             $origincert
             # See https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/configure-tunnels/run-parameters/#origincert.
@@ -44,12 +46,15 @@ module cloudflared {
             | where content =~ '\.cfargotunnel\.com\.?$'
         )
         if ($cname_dns_records | is-empty) {
-            error make --unspanned {msg: "No Cloudflare Tunnel DNS record found."}
+            return (
+                 "No Cloudflare Tunnel DNS record found for current host."
+                 | result ok
+            )
         }
 
         let selected_dns_record = $cname_dns_records | input list -f
         if $selected_dns_record == null {
-            error make --unspanned {msg: "No DNS record chosen.", help: "Choose a DNS record to delete."}
+            return
         }
 
         let response = (
@@ -62,7 +67,10 @@ module cloudflared {
             )
         )
 
-        $response | merge deep {result: {name: $selected_dns_record.name}}
+        $response
+        | merge deep {result: {name: $selected_dns_record.name}}
+        | rename --column={result: deleted_dns_record}
+        | result ok
     }
 }
 
