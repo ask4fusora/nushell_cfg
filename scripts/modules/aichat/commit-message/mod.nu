@@ -1,5 +1,6 @@
 module aichat {
     use modules/assert *
+    use modules/complete *
     use modules/agent-skills *
 
     export const generate_commit_skill_name_env_key = 'AICHAT_GENERATE_COMMIT_SKILL_NAME'
@@ -51,7 +52,7 @@ module aichat {
             | str join (char nl)
         )
 
-        ^aichat -c $prompt | $in
+        ^aichat -c $prompt | complete | complete unwrap
     }
 }
 
