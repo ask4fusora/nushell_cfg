@@ -1,7 +1,7 @@
-use modules/ansi *
-use modules/assert *
-
 export-env {
+    use modules/ansi *
+    use modules/assert *
+
     const ansi_text = ansi magenta_dimmed
     const ansi_admin_left_prompt = ansi red_dimmed
     const ansi_multiline_indicator = ansi white_dimmed
