@@ -28,17 +28,7 @@ module aichat {
         assert binary exists git
         assert binary exists aichat
 
-        let out = ^git --no-pager diff -pM --staged | complete
-        if $out.exit_code != 0 {
-            error make --unspanned (
-                $out.stderr
-                | default $out.stdout
-                | default 'Unknown error occured.'
-                | str trim
-            )
-        }
-
-        let diff = $out.stdout
+        let diff = ^git --no-pager diff -pM --staged | complete | complete unwrap
         let prompt = (
             [
                 'Write a concise commit message.',
