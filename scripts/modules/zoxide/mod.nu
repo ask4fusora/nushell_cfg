@@ -1,4 +1,4 @@
-use modules/assert
+use modules/assert *
 
 export-env {
     $env.config.hooks.env_change.PWD = $env.config.hooks.env_change.PWD?
