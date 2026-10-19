@@ -18,6 +18,7 @@ $env.config.history.file_format = "Sqlite"
 
 use modules/ansi *
 use modules/path *
+use modules/git *
 use modules/fzf *
 use modules/cloudflared *
 use modules/from *
