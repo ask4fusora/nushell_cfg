@@ -1,14 +1,5 @@
 use modules/assert *
 
-export-env {
-    $env.config.hooks.env_change.PWD = $env.config.hooks.env_change.PWD?
-    | default []
-    | append {|_, cwd|
-        assert binary exists zoxide
-        ^zoxide add -- $cwd
-    }
-}
-
 export def --env --wrapped z [...rest: directory]: nothing -> nothing {
     assert binary exists zoxide
 
@@ -35,4 +26,13 @@ export def --env --wrapped z [...rest: directory]: nothing -> nothing {
 export def --env --wrapped zi [...rest: directory]: nothing -> nothing {
     assert binary exists zoxide
     cd $'(^zoxide query --exclude=($env.PWD) --interactive -- ...$rest | str trim -r -c "\n")'
+}
+
+export-env {
+    $env.config.hooks.env_change.PWD = $env.config.hooks.env_change.PWD?
+    | default []
+    | append {|_, cwd|
+        assert binary exists zoxide
+        ^zoxide add -- $cwd
+    }
 }
