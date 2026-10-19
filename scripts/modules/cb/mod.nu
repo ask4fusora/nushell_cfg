@@ -1,6 +1,7 @@
 # Clipboard module.
 
 use modules/span
+use modules/assert
 
 module ext {
     export def cb [
