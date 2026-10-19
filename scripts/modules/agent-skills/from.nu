@@ -1,4 +1,5 @@
 module from {
+    # Parse the content of an agent-skill file and create record.
     export def agent-skill []: string -> record {
         let skill = (
             $in
