@@ -15,7 +15,7 @@ module keybinds {
                                 'assert binary exists aichat'
                                 'let commandline_text = commandline'
                                 'if ($commandline_text | str trim) != "" {'
-                                '   print " - ..."'
+                                '   print " - ..." -n'
                                 '   commandline edit -r (^aichat -e $commandline_text)'
                                 '}'
                             ]
