@@ -1,4 +1,4 @@
-module ext {
+module ansi {
     const ansi_reset = ansi reset
     const ansi_codes = ansi -l | get name
 
@@ -15,4 +15,4 @@ module ext {
     }
 }
 
-export use ext *
+export use ansi
