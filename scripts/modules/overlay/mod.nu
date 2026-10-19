@@ -42,8 +42,9 @@ module overlay {
     use diroverlay
 
     export def --env sync [root?: directory, --reload(-r)]: nothing -> nothing {
-        let sync_root = if $root == null { $env.PWD } else { $root }
-        let overlay_files_to_activate = $sync_root | diroverlay files
+        let overlay_files_to_activate = (
+            $root | default $env.PWD | diroverlay files
+        )
         let overlay_names_to_activate = (
             $overlay_files_to_activate | each { diroverlay name }
         )
