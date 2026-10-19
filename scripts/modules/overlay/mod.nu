@@ -30,14 +30,15 @@ def diroverlay-zero-hook []: nothing -> record {
     'overlay use zero' | to diroverlay-hook
 }
 
-export def --env sync [--reload(-r)]: nothing -> nothing {
+export def --env sync [cwd?: directory, --reload(-r)]: nothing -> nothing {
+    let overlay_root = if $cwd == null { $env.PWD } else { $cwd }
     let active_diroverlay_names = (
         overlay list
         | where active
         | get name
         | where ($it | str starts-with $diroverlay_prefix)
     )
-    let overlay_files_to_activate = $env.PWD | diroverlay-files
+    let overlay_files_to_activate = $overlay_root | diroverlay-files
     let overlay_names_to_activate = (
         $overlay_files_to_activate | each { diroverlay-name }
     )
@@ -58,16 +59,20 @@ export def --env sync [--reload(-r)]: nothing -> nothing {
         }
     )
 
-    $env.config.hooks.pre_prompt = $env.config.hooks.pre_prompt
-    | where not ($it | get -o $diroverlay_hook_annotation)
-    | append $overlay_hide_hooks
-    | append $overlay_use_hooks
-    | append (diroverlay-zero-hook)
-    | append (diroverlay-cleanup-hook)
+    $env.config.hooks.pre_prompt = (
+        $env.config.hooks.pre_prompt
+        | where not ($it | get -o $diroverlay_hook_annotation)
+        | append $overlay_hide_hooks
+        | append $overlay_use_hooks
+        | append (diroverlay-zero-hook)
+        | append (diroverlay-cleanup-hook)
+    )
 }
 
 export-env {
-    $env.config.hooks.env_change.PWD = $env.config.hooks.env_change.PWD?
-    | default []
-    | append { sync }
+    $env.config.hooks.env_change.PWD = (
+        $env.config.hooks.env_change.PWD?
+        | default []
+        | append {|_, cwd| sync $cwd }
+    )
 }
