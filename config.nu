@@ -32,6 +32,7 @@ use modules/aichat *
 use modules/clipboard *
 use modules/uv *
 use nu-scripts/custom-completions/git/git-completions.nu *
+use nu-scripts/custom-completions/gh/gh-completions.nu *
 use nu-scripts/custom-completions/uv/uv-completions.nu *
 use nu-scripts/custom-completions/scoop/scoop-completions.nu *
 use nu-scripts/custom-completions/winget/winget-completions.nu *

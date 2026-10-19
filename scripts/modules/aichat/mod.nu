@@ -9,6 +9,7 @@ module aichat {
 
 export use extern.nu *
 export use aichat
+export use commit-message *
 
 export-env {
     use keybinds.nu *
