@@ -20,7 +20,7 @@ use modules/ansi *
 use modules/path *
 use modules/fzf *
 use modules/cloudflared *
-use modules/from
+use modules/from *
 use modules/starship
 use modules/overlay
 use modules/zed *
