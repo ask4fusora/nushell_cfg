@@ -1,7 +1,7 @@
-const ansi_reset = ansi reset
-const ansi_codes = ansi -l | get name
-
 module ext {
+    const ansi_reset = ansi reset
+    const ansi_codes = ansi -l | get name
+
     def "nu-complete style" [] {
         $ansi_codes
     }
