@@ -22,7 +22,7 @@ use modules/fzf *
 use modules/cloudflared *
 use modules/from *
 use modules/starship *
-use modules/overlay
+use modules/overlay *
 use modules/zed *
 use modules/yazi *
 use modules/zoxide *
