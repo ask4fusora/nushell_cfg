@@ -29,10 +29,12 @@ export def --env --wrapped zi [...rest: directory]: nothing -> nothing {
 }
 
 export-env {
-    $env.config.hooks.env_change.PWD = $env.config.hooks.env_change.PWD?
-    | default []
-    | append {|_, cwd|
-        assert binary exists zoxide
-        ^zoxide add -- $cwd
-    }
+    $env.config.hooks.env_change.PWD = (
+        $env.config.hooks.env_change.PWD?
+        | default []
+        | append {|_, cwd|
+            assert binary exists zoxide
+            ^zoxide add -- $cwd
+        }
+    )
 }
