@@ -1,5 +1,21 @@
 module from {
-    export def "docker-compose" [] { "[" + $in + "]" | from json }
+    export def "docker-compose" []: string -> record { "[" + $in + "]" | from json }
+
+    export def "env" []: string -> record {
+        lines
+        | split column '#' # remove comments
+        | get column0
+        | parse "{key}={value}"
+        | update value {
+            str trim                      # Trim whitespace between value and inline comments
+            | str trim -c '"'             # unquote double-quoted values
+            | str trim -c "'"             # unquote single-quoted values
+            | str replace -a "\\n" "\n"   # replace `\n` with newline char
+            | str replace -a "\\r" "\r"   # replace `\r` with carriage return
+            | str replace -a "\\t" "\t"   # replace `\t` with tab
+        }
+        | transpose -r -d
+    }
 }
 
 export use from
