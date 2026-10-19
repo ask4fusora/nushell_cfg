@@ -16,6 +16,7 @@ $env.config.completions.algorithm = "Fuzzy"
 
 $env.config.history.file_format = "Sqlite"
 
+use modules/complete *
 use modules/ansi *
 use modules/path *
 use modules/git *
