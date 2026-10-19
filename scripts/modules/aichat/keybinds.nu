@@ -11,7 +11,7 @@ module keybinds {
                         send: ExecuteHostCommand
                         cmd: (
                             [
-                                'use modules/assert'
+                                'use modules/assert *'
                                 'assert binary exists aichat'
                                 'let commandline_text = commandline'
                                 'if ($commandline_text | str trim) != "" {'
