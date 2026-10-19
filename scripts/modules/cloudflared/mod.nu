@@ -65,3 +65,5 @@ module cloudflared {
         $response | merge deep {result: {name: $selected_dns_record.name}}
     }
 }
+
+export use cloudflared
