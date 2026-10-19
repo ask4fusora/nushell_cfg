@@ -1,4 +1,4 @@
-module ext {
+module extern {
     def completion-values [flag: string] {
         assert binary exists aichat
 
@@ -67,4 +67,4 @@ module ext {
     ]
 }
 
-export use ext *
+export use extern *
