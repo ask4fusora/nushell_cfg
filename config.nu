@@ -36,6 +36,7 @@ use modules/clipboard *
 use modules/uv *
 use modules/nifa *
 use modules/bin *
+use modules/vipe *
 use nu-scripts/custom-completions/git/git-completions.nu *
 use nu-scripts/custom-completions/gh/gh-completions.nu *
 use nu-scripts/custom-completions/uv/uv-completions.nu *
