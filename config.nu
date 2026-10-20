@@ -3,9 +3,8 @@ $env.config.show_banner = false
 $env.config.edit_mode = "vi"
 $env.config.cursor_shape = {vi_insert: line, vi_normal: block}
 
-let env_editor = $env.EDITOR?
-if $env_editor != null {
-    $env.config.buffer_editor = $env_editor | split row -r '\s+'
+if ($env.EDITOR? | describe) == 'string' {
+    $env.config.buffer_editor = $env.EDITOR | split row -r '\s+'
 }
 
 $env.config.shell_integration.osc7 = true
