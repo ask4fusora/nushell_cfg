@@ -5,7 +5,7 @@ module agent-skills {
     const agent_skills_folder_name = 'skills'
     const agent_skill_file_name = 'SKILL.md'
 
-    export def file-path [skill_name: string, --root(-r): oneof<string, nothing>]: nothing -> oneof<string, nothing> {
+    export def file-path [skill_name: string, --root(-r): oneof<directory, nothing>]: nothing -> oneof<string, nothing> {
         let project_skill_file_path = (
             $root
             | default $env.PWD

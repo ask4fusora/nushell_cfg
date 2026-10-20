@@ -1,11 +1,11 @@
 use modules/assert *
 
-export def --wrapped ya [...args: string]: nothing -> nothing {
+export def --wrapped ya [...args: directory]: nothing -> nothing {
     assert binary exists yazi
     ^yazi ...$args
 }
 
-export def --env --wrapped y [...args: string]: nothing -> nothing {
+export def --env --wrapped y [...args: directory]: nothing -> nothing {
     assert binary exists yazi
 
     let temp_file = mktemp -t "yazi_cwd.XXXXXX"

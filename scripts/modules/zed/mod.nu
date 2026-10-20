@@ -17,7 +17,7 @@ module extern {
         --reuse(-r)               # Reuse an existing window, replacing its workspace
         --existing(-e)            # Open in existing Zed window
         --classic                 # Use the classic open behavior: new window for directories, reuse for files
-        --user-data-dir: path     # Sets a custom directory for all user data (e.g., database, extensions, logs). This overrides the default platform-specific data directory location: `%LOCALAPPDATA%\Zed`
+        --user-data-dir: directory     # Sets a custom directory for all user data (e.g., database, extensions, logs). This overrides the default platform-specific data directory location: `%LOCALAPPDATA%\Zed`
         --version(-v)             # Print Zed's version and the app path
         --foreground              # Run zed in the foreground (useful for debugging)
         --zed: path               # Custom path to Zed.app or the zed binary
