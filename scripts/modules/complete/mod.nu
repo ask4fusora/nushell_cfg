@@ -1,6 +1,9 @@
 module complete {
     use modules/ansi *
 
+    # Return an external command's stdout on success, or raise an error on failure.
+    @example 'Return stdout on success.' { ^nu --no-config-file -c "print --no-newline hello" | unwrap } --result 'hello'
+    @example 'Raise an error using stderr on failure.' { ^nu --no-config-file -c "print --stderr failed; exit 1" | unwrap }
     export def unwrap []: record<exit_code: int, stdout: oneof<string, binary>, stderr: oneof<string, binary>> -> oneof<string, binary> {
         let out = $in
 
@@ -14,7 +17,7 @@ module complete {
             let stdout = match ($out.stdout | describe) {
                 'binary' => { $out.stdout }
                 'string' => {
-                    $out.stderr | str trim
+                    $out.stdout | str trim
                 }
             }
 
