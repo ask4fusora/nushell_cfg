@@ -34,7 +34,7 @@ module extern {
             | complete unwrap
             | from json
         } else {
-            ^nifa 'askdfj'...$args | complete | complete unwrap
+            ^nifa ...$args | complete | complete unwrap
         }
     }
 }
