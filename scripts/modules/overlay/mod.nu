@@ -1,4 +1,5 @@
 # The `diroverlay:` overlay-name prefix is reserved in order for this module to work.
+# **Reminder:** To use an overlay, is to use a module.
 
 module overlay {
     module diroverlay {
