@@ -35,10 +35,6 @@ module overlay {
             }
             | to hook
         }
-
-        export def zero-hook []: nothing -> record {
-            'overlay use zero' | to hook
-        }
     }
 
     use diroverlay
@@ -66,7 +62,7 @@ module overlay {
         let overlay_hide_hooks = (
             $diroverlay_names_to_hide
             | each {
-                $"overlay hide '($in)'" | diroverlay to hook
+                $"overlay hide --keep-env=[PWD] '($in)'" | diroverlay to hook
             }
         )
         let overlay_use_hooks = (
@@ -84,7 +80,6 @@ module overlay {
             $env.config.hooks.pre_prompt
             | append $overlay_hide_hooks
             | append $overlay_use_hooks
-            | append (diroverlay zero-hook)
             | append (diroverlay cleanup-hook)
         )
     }
