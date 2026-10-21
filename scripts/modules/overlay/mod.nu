@@ -1,5 +1,6 @@
 # The `diroverlay:` overlay-name prefix is reserved in order for this module to work.
-# **Reminder:** To use an overlay, is to use a module.
+# To use an overlay, is to use a module. Specifically, this module is wildcard
+# imported. This is equivalent to `use overlay.nu *`.
 
 module overlay {
     module diroverlay {
