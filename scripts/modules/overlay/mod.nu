@@ -44,30 +44,38 @@ module overlay {
     use diroverlay
 
     export def --env sync [root?: directory, --reload(-r)]: nothing -> nothing {
-        let overlay_files_to_activate = (
-            $root | default $env.PWD | diroverlay files
-        )
-        let overlay_names_to_activate = (
-            $overlay_files_to_activate | each { diroverlay name }
-        )
-        let overlay_names_to_hide = (
+        let diroverlay_root = $root | default $env.PWD
+        let active_diroverlays = (
             overlay list
             | where active
             | where ($it | diroverlay is-diroverlay)
+        )
+        let diroverlays_to_ensure_activated = (
+            $diroverlay_root
+            | diroverlay files
+            | zip $in
+            | into record
+            | transpose file name
+            | update name { diroverlay name }
+        )
+        let diroverlay_names_to_hide = (
+            $active_diroverlays
             | get name
-            | difference $overlay_names_to_activate
+            | difference $diroverlays_to_ensure_activated.name
         )
         let overlay_hide_hooks = (
-            $overlay_names_to_hide
+            $diroverlay_names_to_hide
             | each {
                 $"overlay hide '($in)'" | diroverlay to hook
             }
         )
         let overlay_use_hooks = (
-            $overlay_files_to_activate
-            | zip $overlay_names_to_activate
+            $diroverlays_to_ensure_activated
+            | if $reload { $in } else {
+                where name not-in $active_diroverlays.name
+            }
             | each {
-                $"overlay use --reload=($reload) '($in.0)' as '($in.1)'"
+                $"overlay use --reload=($reload) '($in.file)' as '($in.name)'"
                 | diroverlay to hook
             }
         )
