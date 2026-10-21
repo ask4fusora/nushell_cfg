@@ -12,7 +12,7 @@ module overlay {
             {code: $in} | insert $hook_annotation true
         }
 
-        export def is-diroverlay []: record -> bool {
+        export def is-diroverlay []: record<name: string, active: bool> -> bool {
             $in | get name | str starts-with $overlay_name_prefix
         }
 
@@ -52,6 +52,7 @@ module overlay {
             overlay list
             | where active
             | where ($it | diroverlay is-diroverlay)
+            | get name
             | difference $overlay_names_to_activate
         )
         let overlay_hide_hooks = (
