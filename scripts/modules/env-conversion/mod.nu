@@ -18,8 +18,17 @@ export-env {
                         )
                         if $convert_fn == null { return }
 
-                        load-env {
-                            ($key): ($after | do --env $convert_fn $after) # Support both piping and positional.
+                        try {
+                            load-env {
+                                ($key): ($after | do --env $convert_fn $after) # Support both piping and positional.
+                            }
+                        } catch {|err|
+                            let diagnostic = (
+                                $err.details
+                                | update msg $'Failed to convert `$env.($key)`: ($err.msg)'
+                            )
+
+                            error make $diagnostic
                         }
                     }
 
