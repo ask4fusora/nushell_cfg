@@ -30,7 +30,14 @@ module overlay {
             {
                 $env.config.hooks.pre_prompt = (
                     $env.config.hooks.pre_prompt
-                    | where not ($it | get -o $hook_annotation)
+                    | where {|hook|
+                        if (
+                            ($hook | describe) == 'record'
+                            and ($hook | get -o $hook_annotation)
+                        ) { return false }
+
+                        return true
+                    }
                 )
             }
             | to hook
