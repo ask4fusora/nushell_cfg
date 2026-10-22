@@ -31,7 +31,10 @@ module main {
             | default --empty null
         )
         if $editor_argv == null {
-            error make --unspanned {msg: 'No editor is configured.', help: 'Provide an editor with `--editor`, or by configuring either `$env.config.buffer_editor` or `EDITOR`.'}
+            error make --unspanned {
+                msg: 'No editor is configured.'
+                help: 'Provide an editor with `--editor`, or by configuring either `$env.config.buffer_editor` or `EDITOR`.'
+            }
         }
 
         assert binary exists $editor_argv.0
@@ -42,7 +45,7 @@ module main {
         try {
             $stdin | save --force $temp_file
             run-external ...([$editor_argv] | flatten) $temp_file
-            open --raw $temp_file
+            open --raw $temp_file | collect | str trim
         } catch {|err| error make $err } finally {
             rm --force --permanent $temp_file
         }
