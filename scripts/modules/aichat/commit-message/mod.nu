@@ -24,7 +24,10 @@ module aichat {
         | str join (char nl)
     }
 
-    export def generate-commit [--agent-skill-name(-s): oneof<string, nothing>]: nothing -> string {
+    export def generate-commit [
+        --agent-skill-name(-s): oneof<string, nothing>
+        --debug-prompt(-d) # Print prompt instead of generating message.
+    ]: nothing -> string {
         assert binary exists git
         assert binary exists aichat
 
@@ -46,7 +49,9 @@ module aichat {
             | str join (char nl)
         )
 
-        ^aichat -c $prompt | complete | complete unwrap
+        if $debug_prompt { $prompt } else {
+            ^aichat -c $prompt | complete | complete unwrap
+        }
     }
 }
 
