@@ -9,6 +9,13 @@ export-env {
                 $new_keys
                 | par-each {|key|
                     let env_conversion_hook = {|before, after|
+                        let pending = $env.__ENV_CONVERSION_PENDING? | default {}
+                        let expected = $pending | get -o $key
+
+                        $env.__ENV_CONVERSION_PENDING = ($pending | reject -o $key)
+
+                        if $after == $expected { return }
+
                         if ($after | describe) != 'string' { return }
 
                         let convert_fn = (
@@ -19,8 +26,16 @@ export-env {
                         if $convert_fn == null { return }
 
                         try {
-                            load-env {
-                                ($key): ($after | do --env $convert_fn $after) # Support both piping and positional.
+                            let converted = ($after | do --env $convert_fn $after) # Support both piping and positional.
+
+                            load-env {($key): $converted}
+
+                            if $converted != $after {
+                                $env.__ENV_CONVERSION_PENDING = (
+                                    $env.__ENV_CONVERSION_PENDING?
+                                    | default {}
+                                    | upsert $key { $converted }
+                                )
                             }
                         } catch {|err|
                             let diagnostic = (
