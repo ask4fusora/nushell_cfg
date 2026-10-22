@@ -21,15 +21,20 @@ export-env {
         PROMPT_INDICATOR_VI_NORMAL: '',
         PROMPT_COMMAND: ($'(char nl)runs ' | ansi apply $ansi_left_prompt),
         PROMPT_COMMAND_RIGHT: {
-            assert binary exists starship
+            job spawn {
+                assert binary exists starship
 
-            let active_overlay_count = overlay list | where active | length
-            let prompts = [
-                $'('overlays' | ansi apply $ansi_text) ($active_overlay_count | into string | ansi apply $ansi_number)'
-                (^starship prompt --right --terminal-width=(term size | get columns))
-            ]
+                let active_overlay_count = overlay list | where active | length
+                let prompts = [
+                    $'('overlays' | ansi apply $ansi_text) ($active_overlay_count | into string | ansi apply $ansi_number)'
+                    (^starship prompt --right --terminal-width=(term size | get columns))
+                ]
 
-            $prompts | str join (char space)
+                let display_str = $prompts | str join (char space)
+                commandline set-prompt --right $display_str
+            }
+
+            ''
         }
     }
 }
