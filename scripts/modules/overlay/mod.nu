@@ -33,7 +33,7 @@ module overlay {
                     | where {|hook|
                         if (
                             ($hook | describe) == 'record'
-                            and ($hook | get -o $hook_annotation)
+                            and ($hook | get -o $hook_annotation) == true
                         ) { return false }
 
                         return true
