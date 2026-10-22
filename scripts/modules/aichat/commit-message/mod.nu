@@ -28,12 +28,16 @@ module aichat {
         assert binary exists git
         assert binary exists aichat
 
-        let diff = ^git --no-pager diff -pM --staged | complete | complete unwrap
+        let diff = (
+            ^git --no-pager diff -pM --staged --word-diff --no-color
+            | complete
+            | complete unwrap
+        )
         let prompt = (
             [
                 'Write a concise commit message.',
                 ($agent_skill_name | build-agent-skill-prompt $in),
-                'Here are the changes in this commit (`git diff --staged`):',
+                'Here are the changes in this commit (`git diff --staged --word-diff`):',
                 '<diff>',
                 ($diff | str trim)
                 '</diff>',
