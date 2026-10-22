@@ -45,7 +45,7 @@ module main {
         try {
             $stdin | save --force $temp_file
             run-external ...([$editor_argv] | flatten) $temp_file
-            open --raw $temp_file | collect | str trim
+            open --raw $temp_file | str trim
         } catch {|err| error make $err } finally {
             rm --force --permanent $temp_file
         }
