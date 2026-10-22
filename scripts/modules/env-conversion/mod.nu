@@ -69,10 +69,7 @@ export-env {
 
     $env.ENV_CONVERSIONS = {
         CWD: {
-            from_string: {|s|
-                print 'converted'
-                $s | path expand -s
-            }
+            from_string: { path expand -s }
         }
     }
 }
