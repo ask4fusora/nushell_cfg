@@ -5,9 +5,23 @@ module agent-skills {
     const agent_skills_folder_name = 'skills'
     const agent_skill_file_name = 'SKILL.md'
 
-    export def file-path [skill_name: string, --root(-r): oneof<directory, nothing>]: nothing -> oneof<string, nothing> {
+    export def file-path [skill_name: string, --cwd(-c): oneof<directory, nothing>]: nothing -> oneof<string, nothing> {
+        if $cwd != null and not ($cwd | path exists) {
+            error make {
+                msg: 'Incorrect argument.'
+                labels: [
+                    {
+                        span: (metadata $cwd).span
+                        text: $'`($cwd)` is a non-existent path.'
+                    }
+                ]
+                help: 'Make sure the provided path exists.'
+            }
+        }
+
         let project_skill_file_path = (
-            $root
+            $cwd
+            | default $env.CWD?
             | default $env.PWD
             | path join $dot_agents_folder_name $agent_skills_folder_name
             | path join $skill_name

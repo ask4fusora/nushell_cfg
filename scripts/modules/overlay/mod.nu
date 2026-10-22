@@ -46,8 +46,25 @@ module overlay {
 
     use diroverlay
 
-    export def --env sync [root?: directory, --reload(-r)]: nothing -> nothing {
-        let diroverlay_root = $root | default $env.PWD
+    export def --env sync [cwd?: directory, --reload(-r)]: nothing -> nothing {
+        if $cwd != null and not ($cwd | path exists) {
+            error make {
+                msg: 'Incorrect argument.'
+                labels: [
+                    {
+                        span: (metadata $cwd).span
+                        text: $'`($cwd)` is a non-existent path.'
+                    }
+                ]
+                help: 'Make sure the provided path exists.'
+            }
+        }
+
+        let diroverlay_root = (
+            $cwd
+            | default $env.CWD?
+            | default $env.PWD
+        )
         let active_diroverlays = (
             overlay list
             | where active
