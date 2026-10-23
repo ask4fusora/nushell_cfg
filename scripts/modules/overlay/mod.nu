@@ -32,7 +32,7 @@ module overlay {
                     $env.config.hooks.pre_prompt
                     | where {|hook|
                         if (
-                            ($hook | describe) == 'record'
+                            ($hook | describe -d).type == 'record'
                             and ($hook | get -o $hook_annotation) == true
                         ) { return false }
 
@@ -102,9 +102,9 @@ module overlay {
 
         $env.config.hooks.pre_prompt = (
             $env.config.hooks.pre_prompt
+            | append (diroverlay cleanup-hook)
             | append $overlay_hide_hooks
             | append $overlay_use_hooks
-            | append (diroverlay cleanup-hook)
         )
     }
 }
