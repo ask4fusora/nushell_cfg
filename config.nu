@@ -3,10 +3,6 @@ $env.config.show_banner = false
 $env.config.edit_mode = "vi"
 $env.config.cursor_shape = {vi_insert: line, vi_normal: block}
 
-if ($env.EDITOR? | describe) == 'string' {
-    $env.config.buffer_editor = $env.EDITOR | split row -r '\s+'
-}
-
 $env.config.shell_integration.osc7 = true
 
 $env.config.max_last_result_size = 500MB
