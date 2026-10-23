@@ -39,13 +39,12 @@ export def cb [
     }
 
     if $output and $pipeline_input != null {
-        let input_type = $pipeline_input | describe
         error make {
             code: 'nu::parser::input_type_mismatch'
-            msg: $'Command does not support ($input_type) input.'
+            msg: $'Command does not support pipeline input.'
             labels: [
                 {
-                    text: $"output mode doesn't support ($input_type) input"
+                    text: $"output mode doesn't support pipeline input"
                     span: (metadata $help).span
                 }
             ]
