@@ -1,3 +1,5 @@
+use modules/assert *
+
 export def elevate []: nothing -> nothing {
     assert binary exists sudo
     ^sudo nu
