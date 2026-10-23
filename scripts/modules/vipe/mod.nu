@@ -27,7 +27,7 @@ module main {
         let editor_argv = (
             (if $editor == null { null } else { $editor | split row -r '\s+' })
             | default --empty $env.config.buffer_editor?
-            | default --empty ([$env.EDITOR?] | compact --empty)
+            | default --empty ($env.EDITOR? | compact --empty)
             | default --empty null
         )
         if $editor_argv == null {
