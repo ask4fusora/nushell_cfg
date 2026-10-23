@@ -1,8 +1,5 @@
 $env.config.show_banner = false
 
-$env.config.edit_mode = "vi"
-$env.config.cursor_shape = {vi_insert: line, vi_normal: block}
-
 $env.config.shell_integration.osc7 = true
 
 $env.config.max_last_result_size = 500MB
@@ -14,6 +11,7 @@ $env.config.history.file_format = "Sqlite"
 $env.config.rm.always_trash = true
 
 use modules/env-conversion *
+use modules/vi *
 use modules/complete *
 use modules/ansi *
 use modules/path *
