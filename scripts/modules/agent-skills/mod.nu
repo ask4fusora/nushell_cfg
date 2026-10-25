@@ -21,7 +21,7 @@ module agent-skills {
 
         let project_skill_file_path = (
             $cwd
-            | default $env.CWD?
+            | default $env.MY_CWD?
             | default $env.PWD
             | path join $dot_agents_folder_name $agent_skills_folder_name
             | path join $skill_name

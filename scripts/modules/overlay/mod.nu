@@ -62,7 +62,7 @@ module overlay {
 
         let diroverlay_root = (
             $cwd
-            | default $env.CWD?
+            | default $env.MY_CWD?
             | default $env.PWD
         )
         let active_diroverlays = (
