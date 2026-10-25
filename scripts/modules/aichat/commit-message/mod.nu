@@ -50,7 +50,7 @@ module aichat {
         )
 
         if $debug_prompt { $prompt } else {
-            ^aichat -c $prompt | complete | complete unwrap
+            ^aichat -c $prompt | complete | complete unwrap | str trim
         }
     }
 }
