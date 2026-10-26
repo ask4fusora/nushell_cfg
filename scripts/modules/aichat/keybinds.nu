@@ -6,10 +6,9 @@ module keybinds {
                 modifier: alt
                 keycode: char_l
                 mode: [vi_insert]
-                event: [
-                    {
-                        send: ExecuteHostCommand
-                        cmd: (
+                event: {
+                    send: executehostcommand
+                    cmd: (
                             [
                                 'use modules/assert *'
                                 'assert binary exists aichat'
@@ -21,8 +20,7 @@ module keybinds {
                             ]
                             | str join (char nl)
                         )
-                    }
-                ]
+                }
             }
         ]
     }
