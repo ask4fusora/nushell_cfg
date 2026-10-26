@@ -24,10 +24,13 @@ module aichat {
         if ($skill.content | is-empty) { return }
 
         [
+            ''
             'The user has selected the following skill for writing commit message that you should follow:'
+            ''
             $'<skill_content name="($skill.name)">'
             $skill.content
             '</skill_content>'
+            ''
         ]
         | str join (char nl)
     }
@@ -51,8 +54,10 @@ module aichat {
                 '- Isolate actual modifications using diff markers (line-level `+` and `-`, or inline word-diff `{+...+}` and `[-...-]`) from unchanged surrounding context lines.',
                 '- Derive commit intent strictly from the marked additions and deletions; never describe functionality or infer motivation from unmarked context lines.',
                 ($agent_skill_name | build-agent-skill-prompt $in),
-                'Here are the changes in this commit (`git diff --staged --word-diff`):',
-                '<diff>',
+                '',
+                'Here are the changes in this commit (`git diff --word-diff`):',
+                '',
+                '<diff from="git diff --word-diff">',
                 ($diff | str trim)
                 '</diff>',
             ]
