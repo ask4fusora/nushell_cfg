@@ -47,6 +47,9 @@ module aichat {
         let prompt = (
             [
                 'Write a concise commit message.',
+                'Default rules:',
+                '- Isolate actual modifications using diff markers (line-level `+` and `-`, or inline word-diff `{+...+}` and `[-...-]`) from unchanged surrounding context lines.',
+                '- Derive commit intent strictly from the marked additions and deletions; never describe functionality or infer motivation from unmarked context lines.',
                 ($agent_skill_name | build-agent-skill-prompt $in),
                 'Here are the changes in this commit (`git diff --staged --word-diff`):',
                 '<diff>',
