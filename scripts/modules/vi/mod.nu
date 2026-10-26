@@ -4,7 +4,7 @@ export-env {
 
     $env.config.keybindings ++= [
         {
-            name: open_editor_restore_input
+            name: open_editor
             modifier: control
             keycode: char_o
             mode: [vi_insert vi_normal]
