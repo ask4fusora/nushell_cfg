@@ -7,7 +7,15 @@ module aichat {
 
     def build-agent-skill-prompt [skill_name: oneof<string, nothing>]: nothing -> oneof<string, nothing> {
         let skill_name = $skill_name | default ($env | get -o $generate_commit_skill_name_env_key)
-        if $skill_name == null { return }
+        if $skill_name == null {
+            error make --unspanned {
+                msg: 'Commit skill name is not set.'
+                help: $'Set the skill name via `--agent-skill-name` or `$($generate_commit_skill_name_env_key)`.'
+            }
+        }
+        if ($skill_name | str trim) == '' {
+            error make --unspanned 'Commit skill name cannot be empty, nor contain only whitespace.'
+        }
 
         let skill_file_path = agent-skills file-path $skill_name
         if $skill_file_path == null { return }

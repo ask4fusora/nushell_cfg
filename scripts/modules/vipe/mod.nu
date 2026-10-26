@@ -33,7 +33,7 @@ module main {
         if $editor_argv == null {
             error make --unspanned {
                 msg: 'No editor is configured.'
-                help: 'Provide an editor with `--editor`, or by configuring either `$env.config.buffer_editor` or `EDITOR`.'
+                help: 'Provide an editor via `--editor`, `$env.config.buffer_editor`, or `$EDITOR`.'
             }
         }
 
