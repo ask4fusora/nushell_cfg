@@ -16,10 +16,12 @@ module keybinds {
                             [
                                 'use modules/assert *'
                                 'assert binary exists aichat'
-                                'let commandline_text = commandline'
-                                'if ($commandline_text | str trim) != "" {'
-                                '   print " - ..." -n'
-                                '   commandline edit -r (^aichat -e $commandline_text)'
+                                'with-env {AICHAT_SHELL: $nu.current-exe} {'
+                                '   let commandline_text = commandline'
+                                '   if ($commandline_text | str trim) != "" {'
+                                '      print " - ..." -n'
+                                '      commandline edit -r (^aichat -e $commandline_text)'
+                                '   }'
                                 '}'
                             ]
                             | str join (char nl)

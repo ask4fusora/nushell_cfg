@@ -2,6 +2,8 @@ module extern {
     def completion-values [flag: string] {
         assert binary exists aichat
 
+        $env.AICHAT_SHELL = $nu.current-exe
+
         try {
             ^aichat $flag
             | lines
