@@ -12,7 +12,6 @@ $env.config.rm.always_trash = true
 
 use modules/env-conversion *
 use modules/vi *
-use modules/progress-bar *
 use modules/complete *
 use modules/ansi *
 use modules/path *
