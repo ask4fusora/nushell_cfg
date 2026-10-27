@@ -14,5 +14,6 @@ export use commit-message *
 export-env {
     use keybinds.nu *
     keybinds init
+
     $env.AICHAT_SHELL = which ^nu | get 0.path
 }

@@ -1,5 +1,9 @@
 module keybinds {
+    use modules/assert *
+
     export def --env init [] {
+        assert binary exists aichat
+
         $env.config.keybindings ++= [
             {
                 name: aichat_integration
