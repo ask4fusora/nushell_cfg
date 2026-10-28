@@ -5,7 +5,7 @@ module aichat {
         assert binary exists aichat
 
         $env.AICHAT_SHELL = $nu.current-exe
-        ^aichat --info | detect columns --no-headers | transpose --header-row --as-record
+        ^aichat --info | str trim | lines | split column -r '\s+' key value | transpose --header-row --as-record
     }
 }
 
