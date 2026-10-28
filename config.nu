@@ -24,7 +24,6 @@ use modules/overlay *
 use modules/zed *
 use modules/yazi *
 use modules/zoxide *
-use modules/admin *
 use modules/aichat *
 use modules/clipboard *
 use modules/uv *
