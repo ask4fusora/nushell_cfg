@@ -16,7 +16,7 @@ module extern {
         assert binary exists nifa
 
         let has_format_flag = $args | any {|arg| $arg =~ '^--format(=|$)' }
-        let is_invoking_help = $args | any {|arg| $arg == '--help' or $arg == 'help' }
+        let is_invoking_help = $args | any {|arg| $arg == '--help' or $arg == '-h' }
         let is_invoking_command_supporting_format_flag = (
             0..2
             | each {|i| $args | get -o $i }
