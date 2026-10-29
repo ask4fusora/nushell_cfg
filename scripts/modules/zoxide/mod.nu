@@ -4,7 +4,7 @@ export def --env --wrapped z [...rest: directory]: nothing -> nothing {
     assert binary exists zoxide
 
     let path = match $rest {
-        [] => { "~" }
+        [] => { $env.HOME? | default --empty "~" }
         ["-"] => { "-" }
         [$arg] => {
             let path_type = try {
