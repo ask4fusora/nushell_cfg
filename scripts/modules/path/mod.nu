@@ -1,9 +1,12 @@
 module path {
-    export def ancestors []: string -> list<string> {
+    export def ancestors [
+        --no-symlink(-n) = true # Do not resolve symbolic links.
+    ]: string -> list<string> {
         let path = $in | path expand -n
         let init_dir = match ($path | path type) {
+            null => { return [] }
             'file' => ($path | path dirname)
-            'dir' => $path
+            _ => $path
         }
 
         $init_dir | path split | generate {|part, prev_path|
