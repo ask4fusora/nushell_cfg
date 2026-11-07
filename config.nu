@@ -1,5 +1,3 @@
-$env.config.show_banner = false
-
 $env.config.shell_integration.osc7 = true
 
 $env.config.max_last_result_size = 500MB
