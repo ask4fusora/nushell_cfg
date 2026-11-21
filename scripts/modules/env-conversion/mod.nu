@@ -43,7 +43,7 @@ export-env {
                                 | update msg $'Failed to convert `$env.($key)`: ($err.msg)'
                             )
 
-                            error make $diagnostic
+                            error make -u $diagnostic
                         }
                     }
 
