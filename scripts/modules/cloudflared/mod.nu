@@ -3,7 +3,7 @@ module cloudflared {
 
     export def "tunnel dns delete" [
         --origincert: oneof<path, nothing> # The account certificate file path for one of your zones.
-    ]: nothing -> oneof<record<ok: bool, result: any>, nothing> {
+    ]: nothing -> oneof<Result, nothing> {
         let cert_path = (
             $origincert
             # See https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/configure-tunnels/run-parameters/#origincert.
