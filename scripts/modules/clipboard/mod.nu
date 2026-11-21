@@ -6,7 +6,6 @@ use modules/assert *
 export def cb [
     --input(-i) # Input mode.
     --output(-o) # Output mode.
-    --help(-h) # Display help for this command.
 ]: [nothing -> string, string -> nothing] {
     if $input and $output or not ($input or $output) {
         error make {
@@ -32,7 +31,7 @@ export def cb [
             labels: [
                 {
                     text: 'input mode requires value to be piped in'
-                    span: (metadata $help).span
+                    span: (metadata $input).span
                 }
             ]
         }
@@ -45,7 +44,7 @@ export def cb [
             labels: [
                 {
                     text: $"output mode doesn't support pipeline input"
-                    span: (metadata $help).span
+                    span: (metadata $output).span
                 }
             ]
         }
