@@ -1,7 +1,7 @@
 use modules/env-conversion *
 
 $env.ENV_CONVERSIONS = {
-    CWD: {
+    MY_CWD: {
         from_string: { path expand -s }
     }
 
