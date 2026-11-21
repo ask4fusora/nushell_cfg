@@ -1,6 +1,7 @@
 .zed/
 
 /env.nu
+/config.nu
 
 /history.txt
 /history.sqlite3
