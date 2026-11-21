@@ -23,7 +23,6 @@ use modules/yazi *
 use modules/zoxide *
 use modules/aichat *
 use modules/clipboard *
-use modules/uv *
 use modules/nifa *
 use modules/bin *
 use modules/vipe *
