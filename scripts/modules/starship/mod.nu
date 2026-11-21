@@ -2,6 +2,8 @@ export-env {
     use modules/ansi *
     use modules/assert *
 
+    const cwd = path self .
+
     const ansi_text = ansi magenta_dimmed
     const ansi_admin_left_prompt = ansi red_dimmed
     const ansi_multiline_indicator = ansi white_dimmed
@@ -9,10 +11,7 @@ export-env {
     let ansi_left_prompt = if (is-admin) { $ansi_admin_left_prompt } else { $ansi_text }
 
     load-env {
-        STARSHIP_CONFIG: (
-            $nu.default-config-dir
-            | path join scripts modules starship starship.toml
-        ),
+        STARSHIP_CONFIG: ($cwd | path join starship.toml),
         STARSHIP_SHELL: "nu",
         STARSHIP_SESSION_KEY: (random chars --length=16),
 
