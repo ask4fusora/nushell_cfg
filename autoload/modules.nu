@@ -11,3 +11,4 @@ use modules/vipe *
 
 # Required apps.
 use modules/starship *
+use modules/fd *
