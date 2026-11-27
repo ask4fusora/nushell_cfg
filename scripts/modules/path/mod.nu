@@ -14,6 +14,14 @@ module path {
             {out: $joined_path, next: $joined_path}
         } ''
     }
+
+    export def is-absolute []: string -> bool {
+        let p = $in
+        match $nu.os-info.name {
+            "windows" => ($p =~ '^([a-zA-Z]:[/\\]|[/\\]{2})'),
+            _ => ($p | str starts-with '/'),
+        }
+    }
 }
 
 export use path
