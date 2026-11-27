@@ -2,6 +2,7 @@
 use modules/ansi *
 use modules/complete *
 use modules/env-conversion *
+use modules/mklink *
 use modules/overlay *
 use modules/path *
 
